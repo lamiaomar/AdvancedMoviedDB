@@ -6,8 +6,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.Dispatcher
+import javax.inject.Inject
 
-class MoviesDataSource (
+class MoviesDataSource @Inject constructor(
     private val moviesApiService : MoviesApiService ,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
     ){

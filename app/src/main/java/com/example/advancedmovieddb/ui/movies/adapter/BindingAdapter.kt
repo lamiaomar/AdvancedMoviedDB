@@ -23,7 +23,6 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-
 @BindingAdapter("listData")
 fun bindMovies(
     recyclerView: RecyclerView,

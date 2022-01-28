@@ -5,19 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.advancedmovieddb.databinding.FragmentMoviesBinding
 import com.example.advancedmovieddb.ui.movies.adapter.MoviesAdapter
 import com.example.advancedmovieddb.ui.movies.viewModel.MoviesViewModel
-import com.example.advancedmovieddb.ui.movies.viewModel.MoviesViewModelFactory
-import kotlinx.coroutines.flow.collectLatest
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-
+@ExperimentalCoroutinesApi
+@AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
-    val viewModel : MoviesViewModel by activityViewModels{
-        MoviesViewModelFactory()
-    }
+
+    private val viewModel : MoviesViewModel by viewModels<MoviesViewModel>()
+
 
     private lateinit var binding : FragmentMoviesBinding
 
@@ -33,8 +34,6 @@ class MoviesFragment : Fragment() {
         binding.viewModel = viewModel
 
         binding.photosGrid.adapter = MoviesAdapter()
-
-
 
         return binding.root
 

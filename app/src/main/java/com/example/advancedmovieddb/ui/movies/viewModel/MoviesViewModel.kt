@@ -9,11 +9,15 @@ import com.example.advancedmovieddb.domain.GetMoviesUseCase
 import com.example.advancedmovieddb.model.Movies
 import com.example.advancedmovieddb.ui.DetailsMoviesUiState
 import com.example.advancedmovieddb.ui.MoviesUiState
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MoviesViewModel(
+@HiltViewModel
+class MoviesViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase
 ) : ViewModel() {
 
