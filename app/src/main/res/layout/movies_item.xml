@@ -9,7 +9,7 @@
 
         <variable
             name="result"
-            type="com.example.advancedmovieddb.ui.DetailsMoviesUiState" />
+            type="com.example.advancedmovieddb.data.api.model.MoviesPhoto" />
 </data>
 
 
@@ -32,7 +32,7 @@
             android:id="@+id/poster"
             android:layout_width="200dp"
             android:layout_height="250dp"
-            app:imageUrl="@{result.poster}"
+            app:imageUrl="@{result.posterPath}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

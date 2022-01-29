@@ -4,13 +4,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.advancedmovieddb.data.api.model.Movies
+import com.example.advancedmovieddb.data.api.model.MoviesPhoto
 import com.example.advancedmovieddb.databinding.MoviesItemBinding
 import com.example.advancedmovieddb.ui.DetailsMoviesUiState
 
-class MoviesAdapter : ListAdapter<DetailsMoviesUiState ,
+class MoviesAdapter : PagingDataAdapter<MoviesPhoto ,
         MoviesAdapter.MoviesViewHolder>(DiffCallback) {
 
     class MoviesViewHolder(
@@ -19,7 +22,7 @@ class MoviesAdapter : ListAdapter<DetailsMoviesUiState ,
     ) :
     RecyclerView.ViewHolder(binding.root)
     {
-        fun bind(movies : DetailsMoviesUiState){
+        fun bind(movies : MoviesPhoto){
             binding.result = movies
             binding.executePendingBindings()
         }
@@ -28,17 +31,17 @@ class MoviesAdapter : ListAdapter<DetailsMoviesUiState ,
 
     }
 
-    companion object DiffCallback : DiffUtil.ItemCallback<DetailsMoviesUiState>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<MoviesPhoto>() {
         override fun areItemsTheSame(
-            oldDetails: DetailsMoviesUiState,
-            newDetails: DetailsMoviesUiState
+            oldDetails: MoviesPhoto,
+            newDetails: MoviesPhoto
         ): Boolean {
             return newDetails.title == oldDetails.title
         }
 
         override fun areContentsTheSame(
-            oldDetails: DetailsMoviesUiState,
-            newDetails: DetailsMoviesUiState
+            oldDetails: MoviesPhoto,
+            newDetails: MoviesPhoto
         ): Boolean {
             return oldDetails.title == newDetails.title
         }
@@ -53,8 +56,9 @@ class MoviesAdapter : ListAdapter<DetailsMoviesUiState ,
     }
 
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
-        val poster = getItem(position)
-        holder.bind(poster)
+         getItem(position)?.let {
+            holder.bind(it)
+        }
     }
 
 }

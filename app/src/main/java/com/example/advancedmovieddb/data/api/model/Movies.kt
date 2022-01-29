@@ -1,4 +1,4 @@
-package com.example.advancedmovieddb.model
+package com.example.advancedmovieddb.data.api.model
 
 import com.squareup.moshi.Json
 
@@ -34,16 +34,16 @@ data class MoviesPhoto(
     val video: Boolean? = null,
 
     @Json(name="title")
-    val title: String ,
+    val title: String? = null,
 
     @Json(name="genre_ids")
     val genreIds: List<Int>,
 
     @Json(name="poster_path")
-    val posterPath: String ,
+    val posterPath: String? = null ,
 
     @Json(name="backdrop_path")
-    val backdropPath: String ,
+    val backdropPath: String? = null,
 
     @Json(name="release_date")
     val releaseDate: String? = null,

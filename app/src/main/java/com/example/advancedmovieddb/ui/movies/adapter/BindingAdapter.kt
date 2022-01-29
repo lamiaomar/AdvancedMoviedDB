@@ -4,10 +4,13 @@ import android.util.Log
 import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import androidx.paging.PagingData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.advancedmovieddb.R
+import com.example.advancedmovieddb.data.api.model.MoviesPhoto
 import com.example.advancedmovieddb.ui.DetailsMoviesUiState
+import kotlinx.coroutines.flow.Flow
 
 
 @BindingAdapter("imageUrl")
@@ -23,12 +26,11 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-
-@BindingAdapter("listData")
-fun bindMovies(
-    recyclerView: RecyclerView,
-    data : List<DetailsMoviesUiState>
-){
-  val adapter = recyclerView.adapter as MoviesAdapter
-  adapter.submitList(data)
-}
+//@BindingAdapter("listData")
+//fun bindMovies(
+//    recyclerView: RecyclerView,
+//    data : PagingData<Flow<MoviesPhoto>>
+//){
+//  val adapter = recyclerView.adapter as MoviesAdapter
+//  adapter.submitList(data)
+//}
