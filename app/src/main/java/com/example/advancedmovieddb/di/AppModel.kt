@@ -32,8 +32,8 @@ object AppModel {
 
     @Provides
     @Singleton
-    fun provideMoviesRepo(moviesDataSource: MoviesDataSource) : MoviesRepository
-    = MoviesRepository(moviesDataSource)
+    fun provideMoviesRepo(moviesDataSource: MoviesDataSource ,moviesApiService: MoviesApiService) : MoviesRepository
+    = MoviesRepository(moviesDataSource , moviesApiService)
 
     @Provides
     @Singleton
