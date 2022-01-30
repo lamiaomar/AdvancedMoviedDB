@@ -1,6 +1,7 @@
 package com.example.advancedmovieddb.ui.movies
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,13 +21,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-//@ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MoviesFragment : Fragment() {
 
-
-    private val viewModel: MoviesViewModel by viewModels<MoviesViewModel>()
-
+    private val viewModel: MoviesViewModel by viewModels()
 
     private lateinit var binding: FragmentMoviesBinding
     private lateinit var adapter: MoviesAdapter
@@ -46,7 +44,7 @@ class MoviesFragment : Fragment() {
 
         configureList()
         configureStateListener()
-        fetchPopularMovies()
+        fetchMovies()
 
         binding.retryButton.setOnClickListener { adapter.retry() }
 
@@ -64,9 +62,10 @@ class MoviesFragment : Fragment() {
         )
     }
 
-    private fun fetchPopularMovies() {
+    private fun fetchMovies() {
         lifecycleScope.launch {
             viewModel.getPopularMovies().collectLatest {
+                Log.e("flow1","${viewModel.getPopularMovies()}")
                 adapter.submitData(it)
             }
         }
@@ -75,10 +74,12 @@ class MoviesFragment : Fragment() {
     private fun configureStateListener() {
         adapter.addLoadStateListener { loadState ->
             configureViews(loadState)
+
             val errorState = loadState.source.append as? LoadState.Error
                 ?: loadState.source.prepend as? LoadState.Error
                 ?: loadState.append as? LoadState.Error
                 ?: loadState.prepend as? LoadState.Error
+
             errorState?.let {
                 Toast.makeText(activity, errorState.error.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
@@ -110,51 +111,6 @@ class MoviesFragment : Fragment() {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

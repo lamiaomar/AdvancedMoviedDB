@@ -26,9 +26,6 @@ class MoviesAdapter : PagingDataAdapter<MoviesPhoto ,
             binding.result = movies
             binding.executePendingBindings()
         }
-        var poster : ImageView = binding.poster
-        var title : TextView = binding.title
-
     }
 
     companion object DiffCallback : DiffUtil.ItemCallback<MoviesPhoto>() {
